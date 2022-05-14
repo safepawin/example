@@ -134,7 +134,7 @@
         class="rounded-lg border-2 border-yellow-500 p-4 hover:bg-yellow-600 transition"
         for="upload"
       >
-        Upload</label
+        Upload Background Image</label
       >
       <input
         style="display: none"
