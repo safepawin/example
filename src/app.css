@@ -3,10 +3,10 @@
 @tailwind utilities;
 
 .btn-decrease{
-    @apply rounded-lg border-2 border-red-500 px-2 hover:bg-red-600 transition;
+    @apply rounded-lg border-2 border-red-700 px-2 bg-red-500 hover:bg-red-600 transition;
 }
 .btn-increase{
-    @apply rounded-lg border-2 border-lime-500 px-2 hover:bg-lime-600 transition;
+    @apply rounded-lg border-2 border-lime-700 px-2 bg-lime-500  hover:bg-lime-600 transition;
 }
 
 @import url('https://fonts.googleapis.com/css2?family=Kanit:ital,wght@0,100;0,200;1,100;1,200&display=swap');

@@ -22,6 +22,9 @@
 
   function decreaseFontSizeTitle() {
     titleFontSize -= 2;
+    if (titleFontSize <= 0) {
+      titleFontSize = 2;
+    }
   }
 
   function increaseFontSizeDescription() {
@@ -30,6 +33,9 @@
 
   function decreaseFontSizeDescription() {
     descriptionFontSize -= 2;
+    if (descriptionFontSize <= 0) {
+      descriptionFontSize = 2;
+    }
   }
 
   function updatePositionText(target) {
@@ -98,7 +104,10 @@
         src={image || "/500x500.png"}
         alt="555"
       />
-      <div class="absolute text-white mx-4" style={`bottom:${positonText}px`}>
+      <div
+        class="absolute text-white mx-4 p-3  bg-zinc-100 rounded-lg bg-opacity-30"
+        style={`bottom:${positonText}px`}
+      >
         <p
           class="text-blue-600 font-bold"
           style={`font-size: ${titleFontSize}px; color: ${titleColor}`}
@@ -113,85 +122,102 @@
         </p>
       </div>
     </div>
-    <div class="max-auto mt-5">
+    <div class=" mt-5">
       <input
         type="text"
-        class="border-2 border-gray-400 rounded-md h-10 w-full outline-none text-2xl"
+        class="border-2 border-gray-400 rounded-md h-10 w-full outline-none text-2xl p-2"
         value={title}
         on:input={(e) => changeTitle(e.target)}
       />
     </div>
-    <div class="max-auto mt-5">
+    <div class="mt-5">
       <textarea
         rows="5"
-        class="border-2 border-gray-400 rounded-md h-50 w-full outline-none text-lg"
+        class="border-2 border-gray-400 rounded-md h-50 w-full outline-none text-lg p-2"
         value={description}
         on:input={(e) => changeDescription(e.target)}
       />
     </div>
     <div class="mx-auto mt-5">
-      <label
-        class="rounded-lg border-2 border-yellow-500 p-4 hover:bg-yellow-600 transition"
-        for="upload"
+      <div
+        class="grid md:grid-cols-1 lg:grid-cols-2 gap-y-6 items-center gap-x-5"
       >
-        Upload Background Image</label
-      >
-      <input
-        style="display: none"
-        id="upload"
-        type="file"
-        on:change={(e) => upload(e.target)}
-      />
-      <button
-        class="rounded-lg border-2 border-blue-500 p-4 hover:bg-blue-600 transition"
-        on:click={() => download()}>DownLoad</button
-      >
+        <div>
+          <label
+            class="rounded-lg border-2 border-yellow-700 bg-yellow-500 p-4 hover:bg-yellow-600 transition text-white"
+            for="upload"
+          >
+            Upload Background Image</label
+          >
+          <input
+            style="display: none"
+            id="upload"
+            type="file"
+            on:change={(e) => upload(e.target)}
+          />
+        </div>
+        <button
+          class="rounded-lg border-2 border-blue-700 p-4 bg-blue-500 hover:bg-blue-600 transition text-center text-white"
+          on:click={() => download()}>DownLoad</button
+        >
+      </div>
     </div>
-    <div class="mx-auto mt-2">
-      <button class="btn-decrease" on:click={decreaseFontSizeTitle}>-</button>
-      ขนาด Title
-      <button class="btn-increase" on:click={increaseFontSizeTitle}>+</button>
-    </div>
-    <div class="mx-auto mt-2">
-      <button class="btn-decrease" on:click={decreaseFontSizeDescription}
-        >-</button
-      >
-      ขนาด Description
-      <button class="btn-increase" on:click={increaseFontSizeDescription}
-        >+</button
-      >
-    </div>
-    <div class="mx-auto mt-2">
-      ความสูง
-      <input
-        class="w-full h-2 bg-blue-100 appearance-none outline-none rounded"
-        type="range"
-        id="points"
-        name="points"
-        min="0"
-        max="150"
-        value={positonText}
-        on:input={(e) => updatePositionText(e.target)}
-      />
-    </div>
-    <div class="mx-auto mt-2">
-      <p>สี หัวข้อ</p>
-      <input
-        class="description-color"
-        data-coloris
-        on:input={(e) => updateTitleColor(e.target)}
-      />
-    </div>
-    <div class="mx-auto mt-2">
-      <p>สี รายระเอียด</p>
-      <input
-        class="title-color"
-        data-coloris
-        on:input={(e) => updateDescriptionColor(e.target)}
-      />
+    <div class="mx-auto mt-3 border-2 border-gray-800 w-full rounded-md">
+      <div class="grid grid-cols-1 items-center">
+        <div class="text-center mt-2">
+          <button class="btn-decrease" on:click={decreaseFontSizeTitle}
+            >-</button
+          >
+          ขนาด Title
+          <button class="btn-increase" on:click={increaseFontSizeTitle}
+            >+</button
+          >
+        </div>
+        <div class="text-center mt-2">
+          <button class="btn-decrease" on:click={decreaseFontSizeDescription}
+            >-</button
+          >
+          ขนาด Description
+          <button class="btn-increase" on:click={increaseFontSizeDescription}
+            >+</button
+          >
+        </div>
+      </div>
+      <div class="text-center mt-2">
+        <p>ความสูง</p>
+        <input
+          class=" h-2 bg-blue-100 appearance-none outline-none rounded"
+          type="range"
+          id="points"
+          name="points"
+          min="0"
+          max="150"
+          value={positonText}
+          on:input={(e) => updatePositionText(e.target)}
+        />
+      </div>
+      <div class="text-center mt-2">
+        <p>สี หัวข้อ</p>
+        <input
+          class="description-color"
+          data-coloris
+          on:input={(e) => updateTitleColor(e.target)}
+        />
+      </div>
+      <div class="text-center mt-2">
+        <p>สี รายระเอียด</p>
+        <input
+          class="title-color"
+          data-coloris
+          on:input={(e) => updateDescriptionColor(e.target)}
+        />
+      </div>
     </div>
   </div>
 </main>
 
 <style>
+  main {
+    background-color: #e4e4e4;
+  }
 </style>
